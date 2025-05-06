@@ -1,9 +1,9 @@
 package scala.lms.tutorial
 
 import java.io._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-trait LibSuite extends FunSuite {
+trait LibSuite extends AnyFunSuite {
   def dataFilePath(csv: String) = "src/data/" + csv
 }
 
@@ -23,19 +23,19 @@ trait TutorialFunSuite extends LibSuite {
       case e: IOException => ""
     }
   }
-  def writeFile(name: String, content: String) {
+  def writeFile(name: String, content: String) = {
     val out = new java.io.PrintWriter(new File(name))
     out.write(content)
     out.close()
   }
-  def writeFileIndented(name: String, content: String) {
+  def writeFileIndented(name: String, content: String) = {
     val out = new java.io.PrintWriter(new File(name))
     printIndented(content)(out)
     out.close()
   }
   def checkOut(label: String, suffix: String, thunk: => Unit) = {
     val output = new ByteArrayOutputStream()
-    scala.Console.setOut(new PrintStream(output))
+    System.setOut(new PrintStream(output))
     thunk
     check(label, output.toString(), suffix = suffix)
   }
