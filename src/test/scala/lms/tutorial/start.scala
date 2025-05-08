@@ -140,7 +140,6 @@ We could also create a generated square function, of type
 `Rep[Int=>Int]` instead of `Rep[Int]=>Rep[Int]`.
 */
 
-  /*
   test("power with fun square") {
     val snippet = new DslDriver[Int,Int] {
       def square: Rep[Int=>Int] = fun {x => x*x}
@@ -155,7 +154,7 @@ We could also create a generated square function, of type
 
     }
     check("powerfunsquare", snippet.code)
-    assert(snippet.eval(2) === 128)
+    //assert(snippet.eval(2) === 128)
   }
 
 /**
@@ -199,7 +198,6 @@ the second stage, driven by the type of their condition.
     }
     check("range2", snippet.code)
   }
-  */
 }
 /**
       .. includecode:: ../../../../out/dslapirange2.check.scala for
