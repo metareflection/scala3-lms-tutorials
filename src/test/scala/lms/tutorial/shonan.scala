@@ -113,7 +113,6 @@ an `if/else` statement will be generated.
 
 */
 
-/*
    test("shonan-hmm1b_dyn") {
     object Snippet extends DslDriver[Array[Int],Array[Int]] {
       def snippet(v: Rep[Array[Int]]) = {
@@ -261,7 +260,6 @@ The generated code is identical: _"abstraction without regret"_ FTW!
     }
     check("shonan-hmm1d", Snippet.code)
   }
-  */
 }
 
 /**
