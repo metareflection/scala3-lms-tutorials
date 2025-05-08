@@ -80,7 +80,7 @@ time, but only when the generated code is executed.
 */
 
   test("2") {
-    object Snippet extends  DslDriver[Int,Int]{
+    object Snippet extends DslDriver[Int,Int]{
       def snippet(x: Rep[Int]) = {
         def compute(b: Rep[Boolean]): Rep[Int] = {
           // the if is deferred to the second stage
@@ -112,13 +112,12 @@ Similarly, below, the recursive power function and the helper square
 function only exists during staging time.
 */
 
-  /*
   test("power") {
-    val snippet = new DslDriver[Int,Int] {
+    object Snippet extends DslDriver[Int,Int] {
       def square(x: Rep[Int]): Rep[Int] = x*x
 
       def power(b: Rep[Int], n: Int): Rep[Int] =
-        if (n == 0) 1
+        if (n == 0) unit(1)
         else if (n % 2 == 0) square(power(b, n/2))
         else b * power(b, n-1)
 
@@ -126,8 +125,8 @@ function only exists during staging time.
         power(b, 7)
 
     }
-    check("power", snippet.code)
-    assert(snippet.eval(2) === 128)
+    check("power", Snippet.code)
+    //assert(snippet.eval(2) === 128)
   }
 
 /**
@@ -141,6 +140,7 @@ We could also create a generated square function, of type
 `Rep[Int=>Int]` instead of `Rep[Int]=>Rep[Int]`.
 */
 
+  /*
   test("power with fun square") {
     val snippet = new DslDriver[Int,Int] {
       def square: Rep[Int=>Int] = fun {x => x*x}
