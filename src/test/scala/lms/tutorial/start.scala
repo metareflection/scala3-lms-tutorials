@@ -86,7 +86,7 @@ time, but only when the generated code is executed.
           // the if is deferred to the second stage
           if (b) 1 else x
         }
-        compute(x==unit(1))
+        compute(x==1)
       }
     }
     check("2", Snippet.code)
