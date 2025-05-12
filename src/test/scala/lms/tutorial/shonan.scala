@@ -227,13 +227,15 @@ The generated code is identical: _"abstraction without regret"_ FTW!
 
   test("shonan-hmm1d") {
     object Snippet extends DslDriver[Array[Int],Array[Int]] {
-      trait MaybeLiftedRange {
+      // XXX: We could avoid needing to define this if we were a bit less
+      // cute with `unrollIf` below.
+      trait UnrollIf {
         def foreach(f: Rep[Int] => Rep[Unit]): Rep[Unit]
       }
 
       def snippet(v: Rep[Array[Int]]) = {
 
-        def unrollIf(c:Boolean,r: Range): MaybeLiftedRange = new MaybeLiftedRange {
+        def unrollIf(c: Boolean, r: Range) = new UnrollIf {
           def foreach(f: Rep[Int] => Rep[Unit]): Rep[Unit] = {
             if (c) for (j <- (r.start until r.end):Range)      f(j)
             else   for (j <- (r.start until r.end):Rep[Range]) f(j)
