@@ -1,8 +1,8 @@
 /*****************************************
 Emitting Generated Code
 *******************************************/
-class Snippet extends ((Array[int])=>(Array[int])) {
-  def apply(x0:Array[int]): Array[int] = {
+class Snippet extends ((Array[Int])=>(Array[Int])) {
+  def apply(x0:Array[Int]): Array[Int] = {
     val x1 = x0.length
     val x2 = 100 - x1
     val x3 = x2 > 10

@@ -1,8 +1,8 @@
 /*****************************************
 Emitting Generated Code
 *******************************************/
-class Snippet(px6:Array[int]) extends ((Array[int])=>(Array[int])) {
-  def apply(x0:Array[int]): Array[int] = {
+class Snippet(px6:Array[Int]) extends ((Array[Int])=>(Array[Int])) {
+  def apply(x0:Array[Int]): Array[Int] = {
     val x2 = new Array[Int](5)
     val x6 = px6 // static data: Array(1,1,1,1,1)
     var x4 : Int = 0
