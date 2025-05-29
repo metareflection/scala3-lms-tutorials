@@ -126,10 +126,11 @@ abstract class DslSnippet[A:Manifest,B:Manifest] extends Dsl {
   def snippet(x: Rep[A]): Rep[B]
 }
 
-abstract class DslDriver[A:Manifest,B:Manifest] extends DslSnippet[A,B] with DslImpl {
+abstract class DslDriver[A,B](using mA: Manifest[A], mB: Manifest[B]) extends DslSnippet[A,B] with DslImpl {
   lazy val code: String = {
     val source = new java.io.StringWriter()
-    codegen.emitSource(snippet, "Snippet", new java.io.PrintWriter(source))(using manifestTyp[A],manifestTyp[B])
+    codegen.emitSource(snippet, "Snippet", new java.io.PrintWriter(source))
+      (using ManifestTyp(mA), ManifestTyp(mB))
     source.toString
   }
 }
